@@ -4,6 +4,11 @@ export const Edit = ({editTodo, task}) => {
     const [value, setValue] = useState(task.task)
     const handleSubmit = e => {
         e.preventDefault();
+        try{
+            window.localStorage.setItem("todos", JSON.stringify({value}))
+        } catch (error) {
+          console.log(error)
+        }
         editTodo(value, task.id);
         setValue("")
     }
