@@ -4,6 +4,11 @@ export const TodoForm = ({addTodo}) => {
     const [value, setValue] = useState("")
     const handleSubmit = e => {
         e.preventDefault();
+        try{
+            window.localStorage.setItem("todos", JSON.stringify({value}))
+        } catch (error) {
+          console.log(error)
+        }
         addTodo(value);
         setValue("")
     }
